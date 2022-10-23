@@ -9,6 +9,9 @@ enum class VideoTag(val tagName: String,val color: Color) {
 
     MOBILE("Mobile", RedTag),
     PROGRAMMING("Programming", GreenTag),
-    FRONT_ENT("Front End", BlueTag)
+    FRONT_ENT("Front End", BlueTag),
+    DATA_SCIENCE("Data Science",Color.Yellow),
+    DEVOPS("Devops",Color.Cyan),
+    UX_DESIGN("UX & Design",Color.Magenta)
 
 }

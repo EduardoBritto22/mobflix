@@ -4,9 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -49,9 +52,23 @@ fun TagComponent(tag: VideoTag) {
         }
     }
 }
+@Composable
+fun TagListComponent() {
+    LazyRow(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+        items(VideoTag.values()){ category ->
+            TagComponent(category)
+        }
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
 fun TagComponentPreview() {
     TagComponent(VideoTag.MOBILE)
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun TagListComponentPreview() {
+    TagListComponent()
 }
