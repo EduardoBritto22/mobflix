@@ -7,6 +7,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import com.alura.mobflix.enum.VideoTag
+import com.alura.mobflix.ui.component.PreviewCard
+import com.alura.mobflix.ui.model.VideoModel
 import com.alura.mobflix.ui.theme.MobFlixTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,7 +22,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-
+                    PreviewCard(VideoModel(
+                        category = VideoTag.MOBILE,
+                        url = "LR5LUhTZPCE"
+                    ))
                 }
             }
         }
