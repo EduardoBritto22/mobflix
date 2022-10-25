@@ -1,6 +1,7 @@
 package com.alura.mobflix.ui.component
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -15,7 +16,8 @@ import com.alura.mobflix.enum.VideoTag
 fun CategoryTagList(modifier: Modifier = Modifier) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth(),
+        contentPadding = PaddingValues(horizontal = 32.dp)
     ) {
         items(VideoTag.values()) { category ->
             CategoryTag(category)

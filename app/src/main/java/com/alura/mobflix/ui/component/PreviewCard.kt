@@ -17,7 +17,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.alura.mobflix.R
 import com.alura.mobflix.enum.VideoTag
-import com.alura.mobflix.ui.model.VideoModel
+import com.alura.mobflix.model.VideoModel
 
 @Composable
 fun PreviewCard(

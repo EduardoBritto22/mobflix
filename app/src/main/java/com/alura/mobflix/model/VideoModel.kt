@@ -1,4 +1,4 @@
-package com.alura.mobflix.ui.model
+package com.alura.mobflix.model
 
 import com.alura.mobflix.enum.VideoTag
 
