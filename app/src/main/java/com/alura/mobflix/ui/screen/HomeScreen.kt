@@ -11,12 +11,15 @@ import androidx.compose.ui.unit.dp
 import com.alura.mobflix.model.VideoModel
 import com.alura.mobflix.sampledata.sampleVideos
 import com.alura.mobflix.ui.component.CategoryTagList
+import com.alura.mobflix.ui.component.HomeHighlight
 import com.alura.mobflix.ui.component.PreviewCard
 import com.alura.mobflix.ui.theme.MobFlixTheme
 
 @Composable
-fun HomeScreen(videos: List<VideoModel>) {
+fun HomeScreen(videos: List<VideoModel>,highlightVideo: VideoModel) {
     Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+
+        HomeHighlight(highlightVideo)
 
         CategoryTagList()
 
@@ -39,7 +42,7 @@ fun HomeScreen(videos: List<VideoModel>) {
 private fun HomeScreenPreview() {
     MobFlixTheme {
         Surface {
-            HomeScreen(sampleVideos)
+            HomeScreen(sampleVideos, sampleVideos.first())
         }
     }
 }
