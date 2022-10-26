@@ -20,7 +20,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import coil.request.ImageRequest
 import com.alura.mobflix.R
 import com.alura.mobflix.model.VideoModel
 import com.alura.mobflix.sampledata.sampleVideos
@@ -38,14 +37,11 @@ fun HomeHighlight(
     ) {
 
         AsyncImage(
-            model = ImageRequest.Builder(LocalContext.current)
-                .data("https://img.youtube.com/vi/${video.url}/0.jpg")
-                .crossfade(true)
-                .build(),
+            model = "https://img.youtube.com/vi/${video.url}/0.jpg",
             contentDescription = "Highlight thumbnail",
             placeholder = painterResource(R.drawable.videoplaceholder),
             contentScale = ContentScale.FillWidth,
-            modifier = Modifier.align(Alignment.Center)
+            modifier = Modifier.fillMaxSize(),
         )
 
         val context = LocalContext.current

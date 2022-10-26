@@ -2,11 +2,9 @@ package com.alura.mobflix.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
 val RedTag = Color(0xFFD82D2D)
 val GreenTag = Color(0xFF19940F)
 val BlueTag = Color(0xFF5781EF)
-val BlueButton = Color(0xFF2478DF)
+val PrimaryColor = Color(0xFF2478DF)
+val AppBarBackground = Color(0xFF1A1A1A)
+val SecondaryColor = Color(0xFF7B61FF)
