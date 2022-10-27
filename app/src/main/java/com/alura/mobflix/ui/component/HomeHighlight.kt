@@ -2,18 +2,16 @@ package com.alura.mobflix.ui.component
 
 import android.content.Intent
 import android.net.Uri
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -47,18 +45,10 @@ fun HomeHighlight(
         val context = LocalContext.current
         val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/${video.url}")) }
 
-        Button(
-            onClick = { context.startActivity(intent) },
-            content = {
-                Text(
-                    "Watch now",
-                    color = Color.White
-                )
-            },
-            modifier = Modifier
-                .clip(RoundedCornerShape(8.dp))
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 20.dp)
+        ValidateButton(
+            label = "Watch now",
+            onButtonClicked = { context.startActivity(intent) },
+            Modifier.align(Alignment.BottomCenter)
         )
 
     }

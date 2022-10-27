@@ -9,19 +9,22 @@ import androidx.compose.ui.graphics.Color
 
 private val DarkColorPalette = darkColors(
     primary = PrimaryColor,
-    primaryVariant = AppBarBackground,
+    primaryVariant = PrimaryVariantColor,
     secondary = SecondaryColor,
     onSecondary = Color.White,
     background = AppBarBackground,
+    onBackground = Color.White
 
-    )
+)
 
 private val LightColorPalette = lightColors(
     primary = PrimaryColor,
-    primaryVariant = AppBarBackground,
+    primaryVariant = PrimaryVariantColor,
     secondary = SecondaryColor,
     onSecondary = Color.White,
     background = AppBarBackground,
+    onBackground = Color.White
+
 
     /* Other default colors to override
     background = Color.White,

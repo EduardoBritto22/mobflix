@@ -1,9 +1,7 @@
 package com.alura.mobflix.ui.screen
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.FloatingActionButton
@@ -57,6 +55,12 @@ fun HomeScreen(videos: List<VideoModel>, highlightVideo: VideoModel) {
                     video,
                     modifier = Modifier.padding(horizontal = 30.dp)
                 )
+            }
+
+            item {
+                Spacer(Modifier
+                    .fillMaxWidth()
+                    .height(20.dp))
             }
         }
 

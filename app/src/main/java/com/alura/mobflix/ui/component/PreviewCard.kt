@@ -2,7 +2,7 @@ package com.alura.mobflix.ui.component
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -16,7 +16,7 @@ import com.alura.mobflix.model.VideoModel
 
 @Composable
 fun PreviewCard(
-    video: VideoModel,
+    video: VideoModel?,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -24,18 +24,26 @@ fun PreviewCard(
         modifier = modifier.fillMaxWidth()
             .heightIn(min = 180.dp, max = 200.dp),
     ) {
-        CategoryTag(video.category)
+
+        var showCategory by remember { mutableStateOf(false) }
+
+        if (showCategory && video != null) {
+            CategoryTag(video.category)
+        }
         Box(
             modifier = Modifier
                 .clip(RoundedCornerShape(8.dp))
         ) {
 
             AsyncImage(
-                model = "https://img.youtube.com/vi/${video.url}/0.jpg",
+                model = "https://img.youtube.com/vi/${video?.url}/0.jpg",
                 contentDescription = "Video preview",
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop,
-                placeholder = painterResource(R.drawable.videoplaceholder)
+                placeholder = painterResource(R.drawable.videoplaceholder),
+                onSuccess = {
+                    showCategory = true
+                }
             )
         }
     }
