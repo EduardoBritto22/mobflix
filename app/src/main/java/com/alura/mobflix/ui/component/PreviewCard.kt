@@ -13,6 +13,7 @@ import coil.compose.AsyncImage
 import com.alura.mobflix.R
 import com.alura.mobflix.enum.VideoCategory
 import com.alura.mobflix.model.VideoModel
+import com.alura.mobflix.util.getAValidYoutubePath
 
 @Composable
 fun PreviewCard(
@@ -35,15 +36,16 @@ fun PreviewCard(
                 .clip(RoundedCornerShape(8.dp))
         ) {
 
+            val validUrl = getAValidYoutubePath(video.url)
+
             AsyncImage(
-                model = "https://img.youtube.com/vi/${video.url}/0.jpg",
+                model = "https://img.youtube.com/vi/${validUrl}/0.jpg",
                 contentDescription = "Video preview",
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop,
                 placeholder = painterResource(R.drawable.videoplaceholder),
-                onSuccess = {
-                    showCategory = true
-                },
+                onSuccess = { showCategory = true },
+                onError = { showCategory = false},
                 error = painterResource(R.drawable.videoplaceholder)
             )
         }

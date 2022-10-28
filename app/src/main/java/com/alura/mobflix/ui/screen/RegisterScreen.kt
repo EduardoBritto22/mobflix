@@ -18,6 +18,7 @@ import com.alura.mobflix.ui.component.PreviewCard
 import com.alura.mobflix.ui.component.TextInput
 import com.alura.mobflix.ui.component.ValidateButton
 import com.alura.mobflix.ui.theme.MobFlixTheme
+import com.alura.mobflix.util.getAValidYoutubePath
 
 @Composable
 fun RegisterScreen() {
@@ -49,13 +50,14 @@ fun RegisterScreen() {
                 category = videoCategory
             })
 
-        VideoPreview(url,category)
+        VideoPreview(url, category)
 
         ValidateButton(
             label = "Register",
             onButtonClicked = {
+                val validUrl = getAValidYoutubePath(url)
                 VideoModel(
-                    url = url,
+                    url = validUrl,
                     category = category
                 )
             },
@@ -66,7 +68,7 @@ fun RegisterScreen() {
 }
 
 @Composable
-fun VideoPreview(url: String, category: VideoCategory){
+fun VideoPreview(url: String, category: VideoCategory) {
     Column {
 
         Text(
@@ -85,8 +87,6 @@ fun VideoPreview(url: String, category: VideoCategory){
         )
     }
 }
-
-
 
 
 @Preview(showSystemUi = true)
