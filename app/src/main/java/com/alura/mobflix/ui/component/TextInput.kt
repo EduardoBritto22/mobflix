@@ -7,6 +7,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -15,7 +16,13 @@ import com.alura.mobflix.ui.theme.MobFlixTheme
 import com.alura.mobflix.ui.theme.TextDisabledColor
 
 @Composable
-fun TextInput(label: String, placeHolder: String, modifier: Modifier = Modifier) {
+fun TextInput(
+    text : String,
+    label: String,
+    placeHolder: String,
+    onTextChange: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
 
     Column(modifier = modifier) {
         Text(
@@ -27,8 +34,8 @@ fun TextInput(label: String, placeHolder: String, modifier: Modifier = Modifier)
         )
 
         TextField(
-            value = "",
-            onValueChange = {},
+            value = text,
+            onValueChange = {onTextChange(it)},
             shape = RoundedCornerShape(8.dp),
             placeholder = {
                 Text(
@@ -45,7 +52,10 @@ fun TextInput(label: String, placeHolder: String, modifier: Modifier = Modifier)
                 .textFieldColors(
                     backgroundColor = MaterialTheme.colors.primaryVariant,
                     placeholderColor = TextDisabledColor,
-                    textColor = MaterialTheme.colors.onPrimary
+                    textColor = MaterialTheme.colors.onPrimary,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    disabledIndicatorColor = Color.Transparent
                 )
         )
 
@@ -53,12 +63,12 @@ fun TextInput(label: String, placeHolder: String, modifier: Modifier = Modifier)
 
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = false)
 @Composable
 private fun TextInputPreview() {
     MobFlixTheme {
         Surface {
-            TextInput("Url", "Ex: N3h5A0oAzsk")
+            TextInput("","Url", "Ex: N3h5A0oAzsk",{})
         }
     }
 }

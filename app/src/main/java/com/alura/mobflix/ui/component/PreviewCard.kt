@@ -11,12 +11,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.alura.mobflix.R
-import com.alura.mobflix.enum.VideoTag
+import com.alura.mobflix.enum.VideoCategory
 import com.alura.mobflix.model.VideoModel
 
 @Composable
 fun PreviewCard(
-    video: VideoModel?,
+    video: VideoModel,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -27,7 +27,7 @@ fun PreviewCard(
 
         var showCategory by remember { mutableStateOf(false) }
 
-        if (showCategory && video != null) {
+        if (showCategory) {
             CategoryTag(video.category)
         }
         Box(
@@ -36,14 +36,15 @@ fun PreviewCard(
         ) {
 
             AsyncImage(
-                model = "https://img.youtube.com/vi/${video?.url}/0.jpg",
+                model = "https://img.youtube.com/vi/${video.url}/0.jpg",
                 contentDescription = "Video preview",
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop,
                 placeholder = painterResource(R.drawable.videoplaceholder),
                 onSuccess = {
                     showCategory = true
-                }
+                },
+                error = painterResource(R.drawable.videoplaceholder)
             )
         }
     }
@@ -55,7 +56,7 @@ fun PreviewCard(
 fun PreviewCardComponentPreview() {
     PreviewCard(
         VideoModel(
-            category = VideoTag.MOBILE,
+            category = VideoCategory.MOBILE,
             url = "LR5LUhTZPCE"
         )
     )

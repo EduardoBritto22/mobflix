@@ -1,8 +1,8 @@
 package com.alura.mobflix.model
 
-import com.alura.mobflix.enum.VideoTag
+import com.alura.mobflix.enum.VideoCategory
 
 data class VideoModel(
-    val url: String,
-    val category: VideoTag
+    var url: String,
+    var category: VideoCategory
 )

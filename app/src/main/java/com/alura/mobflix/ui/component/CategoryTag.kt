@@ -13,11 +13,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.alura.mobflix.enum.VideoTag
+import com.alura.mobflix.enum.VideoCategory
 
 @Composable
 fun CategoryTag(
-    tag: VideoTag,
+    tag: VideoCategory,
     modifier: Modifier = Modifier
 ) {
     Surface(
@@ -39,5 +39,5 @@ fun CategoryTag(
 @Preview(showBackground = true)
 @Composable
 private fun CategoryTagPreview() {
-    CategoryTag(VideoTag.MOBILE)
+    CategoryTag(VideoCategory.MOBILE)
 }

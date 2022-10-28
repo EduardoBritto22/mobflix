@@ -5,7 +5,7 @@ import com.alura.mobflix.ui.theme.BlueTag
 import com.alura.mobflix.ui.theme.GreenTag
 import com.alura.mobflix.ui.theme.RedTag
 
-enum class VideoTag(val tagName: String,val color: Color) {
+enum class VideoCategory(val tagName: String, val color: Color) {
 
     MOBILE("Mobile", RedTag),
     PROGRAMMING("Programming", GreenTag),

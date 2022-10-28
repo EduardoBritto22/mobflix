@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.alura.mobflix.enum.VideoTag
+import com.alura.mobflix.enum.VideoCategory
 
 
 @Composable
@@ -19,7 +19,7 @@ fun CategoryTagList(modifier: Modifier = Modifier) {
         modifier = modifier.fillMaxWidth(),
         contentPadding = PaddingValues(horizontal = 32.dp)
     ) {
-        items(VideoTag.values()) { category ->
+        items(VideoCategory.values()) { category ->
             CategoryTag(category)
         }
     }
