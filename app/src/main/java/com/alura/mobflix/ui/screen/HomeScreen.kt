@@ -14,23 +14,32 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.alura.mobflix.model.VideoModel
 import com.alura.mobflix.sampledata.sampleVideos
 import com.alura.mobflix.ui.component.CategoryTagList
 import com.alura.mobflix.ui.component.HomeHighlight
 import com.alura.mobflix.ui.component.MobFlixAppBar
 import com.alura.mobflix.ui.component.PreviewCard
+import com.alura.mobflix.ui.navigation.Screen
 import com.alura.mobflix.ui.theme.MobFlixTheme
 
 @Composable
-fun HomeScreen(videos: List<VideoModel>, highlightVideo: VideoModel) {
+fun HomeScreen(
+    videos: List<VideoModel>,
+    navController: NavController,
+    highlightVideo: VideoModel?
+) {
 
     Scaffold(
         topBar = {
             MobFlixAppBar()
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { /* ... */ }) {
+            FloatingActionButton(onClick = {
+                navController.navigate(route = Screen.Register.route)
+            }) {
                 Icon(Icons.Filled.Add, "")
             }
         }
@@ -73,7 +82,7 @@ fun HomeScreen(videos: List<VideoModel>, highlightVideo: VideoModel) {
 private fun HomeScreenPreview() {
     MobFlixTheme {
         Surface {
-            HomeScreen(sampleVideos, sampleVideos.first())
+            HomeScreen(sampleVideos,rememberNavController(), sampleVideos.first())
         }
     }
 }
@@ -83,7 +92,7 @@ private fun HomeScreenPreview() {
 private fun HomeScreenPreviewDarkMode() {
     MobFlixTheme {
         Surface {
-            HomeScreen(sampleVideos, sampleVideos.first())
+           HomeScreen(sampleVideos,rememberNavController(), sampleVideos.first())
         }
     }
 }

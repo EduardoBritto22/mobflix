@@ -25,7 +25,7 @@ import com.alura.mobflix.ui.theme.MobFlixTheme
 
 @Composable
 fun HomeHighlight(
-    video: VideoModel,
+    video: VideoModel?,
     modifier: Modifier = Modifier
 ) {
 
@@ -35,7 +35,7 @@ fun HomeHighlight(
     ) {
 
         AsyncImage(
-            model = "https://img.youtube.com/vi/${video.url}/0.jpg",
+            model = "https://img.youtube.com/vi/${video?.url}/0.jpg",
             contentDescription = "Highlight thumbnail",
             placeholder = painterResource(R.drawable.videoplaceholder),
             contentScale = ContentScale.FillWidth,
@@ -43,7 +43,7 @@ fun HomeHighlight(
         )
 
         val context = LocalContext.current
-        val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/${video.url}")) }
+        val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/${video?.url}")) }
 
         ValidateButton(
             label = "Watch now",

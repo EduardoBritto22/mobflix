@@ -11,6 +11,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.alura.mobflix.enum.VideoCategory
 import com.alura.mobflix.model.VideoModel
 import com.alura.mobflix.ui.component.CategoryChooser
@@ -21,7 +23,7 @@ import com.alura.mobflix.ui.theme.MobFlixTheme
 import com.alura.mobflix.util.getAValidYoutubePath
 
 @Composable
-fun RegisterScreen() {
+fun RegisterScreen(navController: NavHostController) {
 
     Column(
         modifier = Modifier
@@ -97,7 +99,7 @@ private fun RegisterScreenPreview() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colors.background
         ) {
-            RegisterScreen()
+            RegisterScreen(rememberNavController())
         }
     }
 }
@@ -110,7 +112,7 @@ private fun RegisterScreenPreviewDarkMode() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colors.background
         ) {
-            RegisterScreen()
+          //  RegisterScreen(navController)
         }
     }
 }
