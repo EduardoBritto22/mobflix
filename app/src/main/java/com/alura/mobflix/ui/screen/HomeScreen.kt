@@ -16,8 +16,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.alura.mobflix.model.VideoModel
-import com.alura.mobflix.sampledata.sampleVideos
+import com.alura.mobflix.domain.model.VideoModel
+import com.alura.mobflix.data.sampledata.sampleVideos
 import com.alura.mobflix.ui.component.CategoryTagList
 import com.alura.mobflix.ui.component.HomeHighlight
 import com.alura.mobflix.ui.component.MobFlixAppBar

@@ -1,7 +1,7 @@
-package com.alura.mobflix.sampledata
+package com.alura.mobflix.data.sampledata
 
-import com.alura.mobflix.enum.VideoCategory
-import com.alura.mobflix.model.VideoModel
+import com.alura.mobflix.domain.enum.VideoCategory
+import com.alura.mobflix.domain.model.VideoModel
 
 val sampleVideos = listOf(
     VideoModel(

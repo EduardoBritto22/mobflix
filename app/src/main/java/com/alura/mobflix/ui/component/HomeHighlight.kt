@@ -19,8 +19,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.alura.mobflix.R
-import com.alura.mobflix.model.VideoModel
-import com.alura.mobflix.sampledata.sampleVideos
+import com.alura.mobflix.domain.model.VideoModel
+import com.alura.mobflix.data.sampledata.sampleVideos
 import com.alura.mobflix.ui.theme.MobFlixTheme
 
 @Composable

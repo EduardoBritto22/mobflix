@@ -1,4 +1,4 @@
-package com.alura.mobflix.enum
+package com.alura.mobflix.domain.enum
 
 import androidx.compose.ui.graphics.Color
 import com.alura.mobflix.ui.theme.BlueTag

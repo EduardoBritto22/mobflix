@@ -9,9 +9,7 @@ import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.alura.mobflix.sampledata.sampleVideos
 import com.alura.mobflix.ui.navigation.NavGraph
-import com.alura.mobflix.ui.screen.HomeScreen
 import com.alura.mobflix.ui.theme.MobFlixTheme
 
 class MainActivity : ComponentActivity() {
