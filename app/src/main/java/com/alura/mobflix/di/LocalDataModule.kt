@@ -14,5 +14,7 @@ abstract class LocalDataModule {
 
     @Singleton
     @Binds
-    abstract fun bindLocalDataSource(localDataSource: LocalDataSource): ILocalDataSource
+    abstract fun bindILocalDataSource(
+        localDataSource: LocalDataSource
+    ): ILocalDataSource
 }

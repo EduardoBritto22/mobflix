@@ -6,20 +6,14 @@ import com.alura.mobflix.data.repository.datasource.ILocalDataSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class LocalDataSource @Inject constructor(private val videosDao: VideosDao): ILocalDataSource {
-    override suspend fun getVideos(): Flow<List<VideoEntity>> {
-        TODO("Not yet implemented")
-    }
+class LocalDataSource @Inject constructor(
+    private val videosDao: VideosDao,
+) : ILocalDataSource {
+    override suspend fun getVideos(): Flow<List<VideoEntity>> = videosDao.getAllVideos()
 
-    override suspend fun saveVideo(videoEntity: VideoEntity) {
-        TODO("Not yet implemented")
-    }
+    override suspend fun saveVideo(videoEntity: VideoEntity) = videosDao.addVideo(videoEntity)
 
-    override suspend fun updateVideo(videoEntity: VideoEntity) {
-        TODO("Not yet implemented")
-    }
+    override suspend fun updateVideo(videoEntity: VideoEntity) = videosDao.updateVideo(videoEntity)
 
-    override suspend fun deleteVideo(videoEntity: VideoEntity) {
-        TODO("Not yet implemented")
-    }
+    override suspend fun deleteVideo(videoEntity: VideoEntity) = videosDao.deleteVideo(videoEntity)
 }
