@@ -9,7 +9,7 @@ import javax.inject.Inject
 class LocalDataSource @Inject constructor(
     private val videosDao: VideosDao,
 ) : ILocalDataSource {
-    override suspend fun getVideos(): Flow<List<VideoEntity>> = videosDao.getAllVideos()
+    override fun getVideos(): Flow<List<VideoEntity>> = videosDao.getAllVideos()
 
     override suspend fun saveVideo(videoEntity: VideoEntity) = videosDao.addVideo(videoEntity)
 

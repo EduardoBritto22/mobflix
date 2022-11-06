@@ -29,7 +29,6 @@ class MainActivity : ComponentActivity() {
                 ) {
                     navController = rememberNavController()
                     NavGraph(navController = navController)
-                   // HomeScreen(videos = sampleVideos, highlightVideo = sampleVideos.first(), navController = navController)
                 }
             }
         }

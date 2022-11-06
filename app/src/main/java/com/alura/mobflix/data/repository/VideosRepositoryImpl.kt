@@ -14,7 +14,7 @@ class VideosRepositoryImpl @Inject constructor(
     private val mapper: Mapper<VideoEntity, VideoModel>
 ) : IVideosRepository {
 
-    override suspend fun getVideos(): Flow<List<VideoModel>> {
+    override fun getVideos(): Flow<List<VideoModel>> {
         return localDataSource.getVideos().map { videoList -> videoList.map(mapper::mapFromEntity) }
     }
 

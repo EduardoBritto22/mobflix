@@ -11,6 +11,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.alura.mobflix.domain.enum.VideoCategory
@@ -21,9 +22,13 @@ import com.alura.mobflix.ui.component.TextInput
 import com.alura.mobflix.ui.component.ValidateButton
 import com.alura.mobflix.ui.theme.MobFlixTheme
 import com.alura.mobflix.util.getAValidYoutubePath
+import com.alura.mobflix.viewmodel.VideoViewModel
 
 @Composable
-fun RegisterScreen(navController: NavHostController) {
+fun RegisterScreen(
+    navController: NavHostController,
+    viewModel: VideoViewModel = hiltViewModel()
+) {
 
     Column(
         modifier = Modifier
@@ -58,10 +63,13 @@ fun RegisterScreen(navController: NavHostController) {
             label = "Register",
             onButtonClicked = {
                 val validUrl = getAValidYoutubePath(url)
-                VideoModel(
-                    url = validUrl,
-                    category = category
+                viewModel.saveVideo(
+                    VideoModel(
+                        url = validUrl,
+                        category = category
+                    )
                 )
+                navController.popBackStack()
             },
             Modifier.fillMaxWidth()
         )

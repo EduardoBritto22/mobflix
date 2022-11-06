@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface IVideosRepository{
 
-    suspend fun getVideos(): Flow<List<VideoModel>>
+    fun getVideos(): Flow<List<VideoModel>>
     suspend fun saveVideo(video: VideoModel)
     suspend fun updateVideo(video: VideoModel)
     suspend fun deleteVideo(video: VideoModel)
