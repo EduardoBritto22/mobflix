@@ -3,8 +3,9 @@ package com.alura.mobflix.data.mapper
 import com.alura.mobflix.data.db.entity.VideoEntity
 import com.alura.mobflix.domain.enum.VideoCategory
 import com.alura.mobflix.domain.model.VideoModel
+import javax.inject.Inject
 
-class VideoMapper : Mapper<VideoEntity, VideoModel> {
+class VideoMapper @Inject constructor() : Mapper<VideoEntity, VideoModel> {
     override fun mapFromEntity(domainType: VideoEntity): VideoModel {
         return VideoModel(
             url = domainType.url,
