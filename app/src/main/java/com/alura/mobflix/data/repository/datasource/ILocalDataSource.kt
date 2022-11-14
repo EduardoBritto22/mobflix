@@ -8,4 +8,5 @@ interface ILocalDataSource {
     suspend fun saveVideo(videoEntity: VideoEntity)
     suspend fun updateVideo(videoEntity: VideoEntity)
     suspend fun deleteVideo(videoEntity: VideoEntity)
+    fun getVideoById(id: Int): Flow<VideoEntity>
 }

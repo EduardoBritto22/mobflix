@@ -8,6 +8,7 @@ import javax.inject.Inject
 class VideoMapper @Inject constructor() : Mapper<VideoEntity, VideoModel> {
     override fun mapFromEntity(domainType: VideoEntity): VideoModel {
         return VideoModel(
+            id = domainType.id,
             url = domainType.url,
             category = VideoCategory.fromName(domainType.category)
         )
@@ -15,7 +16,7 @@ class VideoMapper @Inject constructor() : Mapper<VideoEntity, VideoModel> {
 
     override fun mapToEntity(dataType: VideoModel): VideoEntity {
         return VideoEntity(
-            id = 0,
+            id = dataType.id,
             url = dataType.url,
             category = dataType.category.tagName
         )

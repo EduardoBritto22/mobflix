@@ -58,6 +58,7 @@ fun PreviewCard(
 fun PreviewCardComponentPreview() {
     PreviewCard(
         VideoModel(
+            0,
             category = VideoCategory.MOBILE,
             url = "LR5LUhTZPCE"
         )

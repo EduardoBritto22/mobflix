@@ -1,11 +1,6 @@
 package com.alura.mobflix.data.db
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.alura.mobflix.data.db.entity.VideoEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -20,4 +15,6 @@ interface VideosDao {
     suspend fun deleteVideo(video: VideoEntity)
     @Query("SELECT * FROM videos")
     fun getAllVideos():Flow<List<VideoEntity>>
+    @Query("SELECT * FROM videos WHERE id = :id")
+    fun getVideoById(id: Int):Flow<VideoEntity>
 }

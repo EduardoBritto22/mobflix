@@ -2,9 +2,7 @@ package com.alura.mobflix.ui.component
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -18,7 +16,8 @@ import com.alura.mobflix.ui.theme.MobFlixTheme
 fun ValidateButton(
     label: String,
     onButtonClicked: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    buttonColor: Color = MaterialTheme.colors.primary
 ) {
 
     Button(
@@ -32,7 +31,7 @@ fun ValidateButton(
         },
         modifier = modifier
             .clip(RoundedCornerShape(8.dp))
-            .padding(bottom = 20.dp)
+    , colors = ButtonDefaults.buttonColors(backgroundColor = buttonColor)
     )
 
 }
@@ -43,6 +42,15 @@ private fun ValidateButtonPreview() {
     MobFlixTheme {
         Surface {
             ValidateButton("Watch now",{})
+        }
+    }
+}
+@Preview(showBackground = true)
+@Composable
+private fun DeleteButtonPreview() {
+    MobFlixTheme {
+        Surface {
+            ValidateButton("Watch now",{}, buttonColor = Color.Red)
         }
     }
 }

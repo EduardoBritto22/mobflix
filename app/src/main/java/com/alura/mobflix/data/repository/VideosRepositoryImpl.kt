@@ -29,4 +29,8 @@ class VideosRepositoryImpl @Inject constructor(
     override suspend fun deleteVideo(video: VideoModel) {
         localDataSource.deleteVideo(mapper.mapToEntity(video))
     }
+
+    override fun getVideoById(id: Int): Flow<VideoModel> {
+        return localDataSource.getVideoById(id).map(mapper::mapFromEntity)
+    }
 }

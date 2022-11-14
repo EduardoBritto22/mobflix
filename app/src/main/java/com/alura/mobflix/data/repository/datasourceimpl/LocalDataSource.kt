@@ -16,4 +16,5 @@ class LocalDataSource @Inject constructor(
     override suspend fun updateVideo(videoEntity: VideoEntity) = videosDao.updateVideo(videoEntity)
 
     override suspend fun deleteVideo(videoEntity: VideoEntity) = videosDao.deleteVideo(videoEntity)
+    override fun getVideoById(id: Int): Flow<VideoEntity> = videosDao.getVideoById(id)
 }

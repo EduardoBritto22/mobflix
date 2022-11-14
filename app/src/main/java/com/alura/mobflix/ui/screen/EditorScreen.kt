@@ -12,34 +12,66 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.alura.mobflix.domain.enum.VideoCategory
 import com.alura.mobflix.domain.model.VideoModel
 import com.alura.mobflix.ui.component.CategoryChooser
-import com.alura.mobflix.ui.component.PreviewCard
 import com.alura.mobflix.ui.component.TextInput
 import com.alura.mobflix.ui.component.ValidateButton
 import com.alura.mobflix.ui.theme.MobFlixTheme
+import com.alura.mobflix.ui.theme.RedTag
 import com.alura.mobflix.util.getAValidYoutubePath
+import com.alura.mobflix.viewmodel.VideoUiState
 import com.alura.mobflix.viewmodel.VideoViewModel
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
-fun RegisterScreen(
+fun EditRoute(
     navController: NavHostController,
+    modifier: Modifier = Modifier,
+    viewModel: VideoViewModel = hiltViewModel(),
+) {
+    val uiState: VideoUiState by viewModel.singleVideoUiState.collectAsStateWithLifecycle()
+
+
+    when (uiState) {
+        VideoUiState.Loading -> EditorScreen(
+            video = VideoModel(0, "", VideoCategory.MOBILE),
+            navController = navController
+        )
+
+        VideoUiState.Error -> TODO()
+        is VideoUiState.Success -> EditorScreen(
+            video = (uiState as VideoUiState.Success).video,
+            navController = navController,
+            modifier = modifier
+        )
+    }
+
+}
+
+
+@Composable
+fun EditorScreen(
+    video: VideoModel,
+    navController: NavHostController,
+    modifier: Modifier = Modifier,
     viewModel: VideoViewModel = hiltViewModel()
 ) {
 
     Column(
-        modifier = Modifier
-            .padding(36.dp),
-        verticalArrangement = Arrangement.spacedBy(32.dp)
+        modifier = modifier
+            .padding(30.dp),
+        verticalArrangement = Arrangement.spacedBy(30.dp)
     ) {
 
-        var url: String by remember { mutableStateOf("") }
-        var category: VideoCategory by remember { mutableStateOf(VideoCategory.MOBILE) }
+        var url: String by remember { mutableStateOf(video.url) }
+        var category: VideoCategory by remember { mutableStateOf(video.category) }
         Text(
-            "Register a video",
+            "Edit the video",
             fontSize = 32.sp,
             fontWeight = FontWeight(700),
             lineHeight = 38.sp
@@ -60,69 +92,54 @@ fun RegisterScreen(
         VideoPreview(url, category)
 
         ValidateButton(
-            label = "Register",
+            label = "Update",
             onButtonClicked = {
                 val validUrl = getAValidYoutubePath(url)
-                viewModel.saveVideo(
-                    VideoModel(
-                        id = 0,
-                        url = validUrl,
-                        category = category
-                    )
-                )
+                video.url = validUrl
+                video.category = category
+                viewModel.updateVideo(video)
                 navController.popBackStack()
             },
             Modifier.fillMaxWidth()
         )
-    }
 
-}
-
-@Composable
-fun VideoPreview(url: String, category: VideoCategory) {
-    Column {
-
-        Text(
-            "Preview",
-            Modifier.padding(bottom = 13.dp),
-            fontSize = 28.sp,
-            fontWeight = FontWeight(700),
-            lineHeight = 33.sp
+        ValidateButton(
+            label = "Delete",
+            onButtonClicked = {
+                viewModel.deleteVideo(video)
+                navController.popBackStack()
+            },
+            Modifier.fillMaxWidth(),
+            buttonColor = RedTag
         )
 
-        PreviewCard(
-            VideoModel(
-                0,
-                url,
-                category
-            )
-        )
     }
+
 }
 
 
 @Preview(showSystemUi = true)
 @Composable
-private fun RegisterScreenPreview() {
+private fun EditorScreenPreview() {
     MobFlixTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colors.background
         ) {
-            RegisterScreen(rememberNavController())
+            EditRoute(rememberNavController())
         }
     }
 }
 
 @Preview(showSystemUi = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun RegisterScreenPreviewDarkMode() {
+private fun EditorScreenPreviewDarkMode() {
     MobFlixTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colors.background
         ) {
-            RegisterScreen(rememberNavController())
+            EditRoute(rememberNavController())
         }
     }
 }

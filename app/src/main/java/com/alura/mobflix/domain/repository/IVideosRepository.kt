@@ -9,5 +9,6 @@ interface IVideosRepository{
     suspend fun saveVideo(video: VideoModel)
     suspend fun updateVideo(video: VideoModel)
     suspend fun deleteVideo(video: VideoModel)
+    fun getVideoById(id: Int): Flow<VideoModel>
 
 }

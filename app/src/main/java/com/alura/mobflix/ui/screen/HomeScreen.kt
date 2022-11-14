@@ -3,19 +3,15 @@ package com.alura.mobflix.ui.screen
 import android.content.Intent
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.net.Uri
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -51,7 +47,6 @@ fun HomeRoute(
     )
 }
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun HomeScreen(
     videosUiState: VideosUiState,
@@ -71,24 +66,27 @@ fun HomeScreen(
         }
     ) { contentPadding ->
 
-        when(videosUiState){
+        when (videosUiState) {
             VideosUiState.Loading -> {}
             VideosUiState.Error -> TODO()
             is VideosUiState.Success -> HomeScreenContent(
                 modifier = modifier,
                 contentPadding = contentPadding,
-                videos = videosUiState.videos
+                videos = videosUiState.videos,
+                navController
             )
         }
 
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun HomeScreenContent(
     modifier: Modifier,
     contentPadding: PaddingValues,
-    videos: List<VideoModel>
+    videos: List<VideoModel>,
+    navController: NavController
 ) {
     LazyColumn(
         modifier
@@ -107,12 +105,25 @@ private fun HomeScreenContent(
         items(videos) { video ->
             val context = LocalContext.current
             val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/${video.url}")) }
+            val expanded: MutableState<Boolean> = remember { mutableStateOf(false) }
 
-            PreviewCard(
-                video,
-                modifier = Modifier.padding(horizontal = 30.dp)
-                    .clickable { context.startActivity(intent) }
-            )
+            Column {
+                PreviewCard(
+                    video,
+                    modifier = Modifier.padding(horizontal = 30.dp)
+                        .combinedClickable(
+                            onClick = {
+                                context.startActivity(intent)
+                            },
+                            onLongClick = {
+                                expanded.value = true
+                            })
+                )
+                MenuContext(
+                    expanded,
+                    menuItems = mapOf("Edit the video" to { navController.navigate(route = Screen.Edit.route + "/${video.id}") })
+                )
+            }
         }
 
         item {
@@ -121,6 +132,25 @@ private fun HomeScreenContent(
                     .fillMaxWidth()
                     .height(20.dp)
             )
+        }
+    }
+}
+
+@Composable
+fun MenuContext(
+    expanded: MutableState<Boolean>,
+    menuItems: Map<String, () -> Unit>,
+    modifier: Modifier = Modifier
+) {
+    DropdownMenu(
+        expanded = expanded.value,
+        // offset = DpOffset((-40).dp, (-40).dp),
+        modifier = modifier,
+        onDismissRequest = { expanded.value = false }) {
+        menuItems.forEach { item ->
+            DropdownMenuItem(onClick = item.value) {
+                Text(text = item.key)
+            }
         }
     }
 }
