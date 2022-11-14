@@ -21,7 +21,7 @@ import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.alura.mobflix.domain.model.VideoModel
+import com.alura.domain.model.VideoModel
 import com.alura.mobflix.ui.component.CategoryTagList
 import com.alura.mobflix.ui.component.HomeHighlight
 import com.alura.mobflix.ui.component.MobFlixAppBar

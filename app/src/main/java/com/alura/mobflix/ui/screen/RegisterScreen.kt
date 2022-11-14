@@ -14,8 +14,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.alura.mobflix.domain.enum.VideoCategory
-import com.alura.mobflix.domain.model.VideoModel
+import com.alura.domain.enum.VideoCategory
+import com.alura.domain.model.VideoModel
 import com.alura.mobflix.ui.component.CategoryChooser
 import com.alura.mobflix.ui.component.PreviewCard
 import com.alura.mobflix.ui.component.TextInput

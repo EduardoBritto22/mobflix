@@ -13,7 +13,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.alura.mobflix.domain.enum.VideoCategory
+import com.alura.domain.enum.VideoCategory
+import com.alura.mobflix.util.getCategoryColor
 
 @Composable
 fun CategoryTag(
@@ -24,7 +25,7 @@ fun CategoryTag(
         shape = RoundedCornerShape(12.dp),
         modifier = modifier
     ) {
-        Box(Modifier.background(color = tag.color)) {
+        Box(Modifier.background(color = getCategoryColor(tag))) {
             Text(
                 tag.tagName,
                 Modifier.padding(horizontal = 20.dp, vertical = 7.dp),

@@ -11,8 +11,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.alura.mobflix.R
-import com.alura.mobflix.domain.enum.VideoCategory
-import com.alura.mobflix.domain.model.VideoModel
+import com.alura.domain.enum.VideoCategory
+import com.alura.domain.model.VideoModel
 import com.alura.mobflix.util.getAValidYoutubePath
 
 @Composable

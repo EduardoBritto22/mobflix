@@ -3,10 +3,10 @@ package com.alura.mobflix.viewmodel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alura.mobflix.domain.model.VideoModel
-import com.alura.mobflix.domain.model.result.Result
-import com.alura.mobflix.domain.model.result.asResult
-import com.alura.mobflix.domain.usecase.*
+import com.alura.domain.model.VideoModel
+import com.alura.domain.model.result.Result
+import com.alura.domain.model.result.asResult
+import com.alura.domain.usecase.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -28,8 +28,6 @@ class VideoViewModel @Inject constructor(
     private val videoId: Int? =
         savedStateHandle["videoId"]
 
-
-
     val uiState: StateFlow<VideosUiState> =
         getVideosUseCase().asResult()
             .map { result ->
@@ -46,7 +44,7 @@ class VideoViewModel @Inject constructor(
             )
 
     val singleVideoUiState: StateFlow<VideoUiState> =
-        getVideoByIdUseCase(videoId?:0).asResult()
+        getVideoByIdUseCase(videoId ?: 0).asResult()
             .map { result ->
                 val videoUiState: VideoUiState = when (result) {
                     is Result.Success -> VideoUiState.Success(result.data)

@@ -24,7 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.toSize
-import com.alura.mobflix.domain.enum.VideoCategory
+import com.alura.domain.enum.VideoCategory
 import com.alura.mobflix.ui.theme.MobFlixTheme
 
 @Composable

@@ -1,6 +1,9 @@
 package com.alura.mobflix.util
 
 import android.util.Patterns
+import androidx.compose.ui.graphics.Color
+import com.alura.domain.enum.VideoCategory
+import com.alura.mobflix.ui.theme.*
 import java.net.URI
 
 fun getAValidYoutubePath(url: String): String {
@@ -13,4 +16,16 @@ fun getAValidYoutubePath(url: String): String {
         url
     }
     return validUrl
+}
+
+
+fun getCategoryColor(category: VideoCategory): Color {
+    return when(category){
+        VideoCategory.MOBILE -> RedTag
+        VideoCategory.PROGRAMMING -> GreenTag
+        VideoCategory.FRONT_ENT -> BlueTag
+        VideoCategory.DATA_SCIENCE -> LightGreenTag
+        VideoCategory.DEVOPS -> YellowTag
+        VideoCategory.UX_DESIGN -> PinkTag
+    }
 }
