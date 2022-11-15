@@ -3,6 +3,7 @@ package com.alura.mobflix.ui.screen
 import android.content.Intent
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.net.Uri
+import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
@@ -21,6 +22,7 @@ import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.alura.domain.enums.VideoCategory
 import com.alura.domain.model.VideoModel
 import com.alura.mobflix.ui.component.CategoryTagList
 import com.alura.mobflix.ui.component.HomeHighlight
@@ -59,7 +61,9 @@ fun HomeScreen(
         },
         floatingActionButton = {
             FloatingActionButton(onClick = {
-                navController.navigate(route = Screen.Register.route)
+                navController.navigate(route = Screen.Register.route) {
+                    launchSingleTop = true
+                }
             }) {
                 Icon(Icons.Filled.Add, "")
             }
@@ -67,8 +71,12 @@ fun HomeScreen(
     ) { contentPadding ->
 
         when (videosUiState) {
-            VideosUiState.Loading -> {}
-            VideosUiState.Error -> TODO()
+            VideosUiState.Loading -> {
+                Log.i("HomeScreen", "Loading ")
+            }
+            VideosUiState.Error -> {
+                Log.i("HomeScreen", "Error ")
+            }
             is VideosUiState.Success -> HomeScreenContent(
                 modifier = modifier,
                 contentPadding = contentPadding,
@@ -88,21 +96,32 @@ private fun HomeScreenContent(
     videos: List<VideoModel>,
     navController: NavController
 ) {
+    var mCategory: VideoCategory? by remember { mutableStateOf(null) }
+
+    val videoList = if (mCategory != null) {
+        videos.filterNot { it.category != mCategory }
+    } else {
+        videos
+    }
+
     LazyColumn(
         modifier
             .fillMaxSize()
             .padding(contentPadding),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-
         item {
-            HomeHighlight(videos.firstOrNull())
+            HomeHighlight(videos.lastOrNull())
         }
         item {
-            CategoryTagList()
+            CategoryTagList(
+                onTagClicked = { category ->
+                    mCategory = category
+                }
+            )
         }
 
-        items(videos) { video ->
+        items(videoList) { video ->
             val context = LocalContext.current
             val intent = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/${video.url}")) }
             val expanded: MutableState<Boolean> = remember { mutableStateOf(false) }
@@ -121,7 +140,11 @@ private fun HomeScreenContent(
                 )
                 MenuContext(
                     expanded,
-                    menuItems = mapOf("Edit the video" to { navController.navigate(route = Screen.Edit.route + "/${video.id}") })
+                    menuItems = mapOf("Edit the video" to {
+                        navController.navigate(route = Screen.Edit.route + "/${video.id}") {
+                            launchSingleTop = true
+                        }
+                    })
                 )
             }
         }
@@ -144,7 +167,6 @@ fun MenuContext(
 ) {
     DropdownMenu(
         expanded = expanded.value,
-        // offset = DpOffset((-40).dp, (-40).dp),
         modifier = modifier,
         onDismissRequest = { expanded.value = false }) {
         menuItems.forEach { item ->

@@ -1,6 +1,6 @@
 package com.alura.data.sampledata
 
-import com.alura.domain.enum.VideoCategory
+import com.alura.domain.enums.VideoCategory
 import com.alura.domain.model.VideoModel
 
 val sampleVideos = listOf(

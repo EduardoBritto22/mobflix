@@ -1,4 +1,4 @@
-package com.alura.domain.enum
+package com.alura.domain.enums
 
 enum class VideoCategory(val tagName: String) {
 

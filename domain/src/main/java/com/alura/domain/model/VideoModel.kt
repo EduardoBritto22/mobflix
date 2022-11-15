@@ -1,6 +1,6 @@
 package com.alura.domain.model
 
-import com.alura.domain.enum.VideoCategory
+import com.alura.domain.enums.VideoCategory
 
 data class VideoModel(
     var id: Int,

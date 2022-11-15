@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.alura.domain.enum.VideoCategory
+import com.alura.domain.enums.VideoCategory
 import com.alura.domain.model.VideoModel
 import com.alura.mobflix.ui.component.CategoryChooser
 import com.alura.mobflix.ui.component.PreviewCard
@@ -22,12 +22,12 @@ import com.alura.mobflix.ui.component.TextInput
 import com.alura.mobflix.ui.component.ValidateButton
 import com.alura.mobflix.ui.theme.MobFlixTheme
 import com.alura.mobflix.util.getAValidYoutubePath
-import com.alura.mobflix.viewmodel.VideoViewModel
+import com.alura.mobflix.viewmodel.SingleVideoViewModel
 
 @Composable
 fun RegisterScreen(
     navController: NavHostController,
-    viewModel: VideoViewModel = hiltViewModel()
+    viewModel: SingleVideoViewModel = hiltViewModel()
 ) {
 
     Column(

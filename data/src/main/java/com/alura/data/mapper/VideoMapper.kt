@@ -1,7 +1,7 @@
 package com.alura.data.mapper
 
 import com.alura.data.db.entity.VideoEntity
-import com.alura.domain.enum.VideoCategory
+import com.alura.domain.enums.VideoCategory
 import com.alura.domain.model.VideoModel
 import javax.inject.Inject
 

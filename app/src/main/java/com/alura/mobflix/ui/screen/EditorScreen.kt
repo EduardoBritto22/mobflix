@@ -16,7 +16,7 @@ import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.alura.domain.enum.VideoCategory
+import com.alura.domain.enums.VideoCategory
 import com.alura.domain.model.VideoModel
 import com.alura.mobflix.ui.component.CategoryChooser
 import com.alura.mobflix.ui.component.TextInput
@@ -24,15 +24,15 @@ import com.alura.mobflix.ui.component.ValidateButton
 import com.alura.mobflix.ui.theme.MobFlixTheme
 import com.alura.mobflix.ui.theme.RedTag
 import com.alura.mobflix.util.getAValidYoutubePath
-import com.alura.mobflix.viewmodel.VideoUiState
-import com.alura.mobflix.viewmodel.VideoViewModel
+import com.alura.mobflix.viewmodel.SingleVideoViewModel
+import com.alura.mobflix.viewmodel.SingleVideoViewModel.VideoUiState
 
 @OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun EditRoute(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    viewModel: VideoViewModel = hiltViewModel(),
+    viewModel: SingleVideoViewModel = hiltViewModel(),
 ) {
     val uiState: VideoUiState by viewModel.singleVideoUiState.collectAsStateWithLifecycle()
 
@@ -47,7 +47,8 @@ fun EditRoute(
         is VideoUiState.Success -> EditorScreen(
             video = (uiState as VideoUiState.Success).video,
             navController = navController,
-            modifier = modifier
+            modifier = modifier,
+            viewModel = viewModel
         )
     }
 
@@ -59,7 +60,7 @@ fun EditorScreen(
     video: VideoModel,
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    viewModel: VideoViewModel = hiltViewModel()
+    viewModel: SingleVideoViewModel = hiltViewModel()
 ) {
 
     Column(
@@ -85,7 +86,8 @@ fun EditorScreen(
         )
 
         CategoryChooser(
-            { videoCategory ->
+            firstOption = category,
+            onChoiceChange = { videoCategory ->
                 category = videoCategory
             })
 

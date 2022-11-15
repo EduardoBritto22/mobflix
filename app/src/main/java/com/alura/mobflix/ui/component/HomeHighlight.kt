@@ -38,6 +38,7 @@ fun HomeHighlight(
             model = "https://img.youtube.com/vi/${video?.url}/0.jpg",
             contentDescription = "Highlight thumbnail",
             placeholder = painterResource(R.drawable.videoplaceholder),
+            error = painterResource(R.drawable.videoplaceholder),
             contentScale = ContentScale.FillWidth,
             modifier = Modifier.fillMaxSize(),
         )

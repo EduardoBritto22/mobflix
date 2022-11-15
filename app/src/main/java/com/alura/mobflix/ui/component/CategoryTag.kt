@@ -13,7 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.alura.domain.enum.VideoCategory
+import com.alura.domain.enums.VideoCategory
 import com.alura.mobflix.util.getCategoryColor
 
 @Composable

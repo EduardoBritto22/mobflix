@@ -2,7 +2,7 @@ package com.alura.mobflix.util
 
 import android.util.Patterns
 import androidx.compose.ui.graphics.Color
-import com.alura.domain.enum.VideoCategory
+import com.alura.domain.enums.VideoCategory
 import com.alura.mobflix.ui.theme.*
 import java.net.URI
 

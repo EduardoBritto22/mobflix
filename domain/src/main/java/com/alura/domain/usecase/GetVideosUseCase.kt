@@ -9,7 +9,7 @@ class GetVideosUseCase @Inject constructor(
     private val repository: IVideosRepository
 ) {
     operator fun invoke(): Flow<List<VideoModel>> {
-       return repository.getVideos()
+        return repository.getVideos()
     }
 
 
