@@ -21,3 +21,4 @@ It can edit or remove the videos as well.
 - `Room`: A local database to store the videos
 - `Navigation`: Use of the navigation library for compose to change the screens
   - `Navigation arguments`: Passing arguments between screens
+- `Modularization`: Multiple modules for the layers of a clean architecture
